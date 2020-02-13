@@ -1,9 +1,12 @@
 const express = require('express')
+const cors = require('cors')
+
 const { getStoresFromCity, getBusinessReviews } = require('./lib/yelp')
 require('dotenv').config()
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
+app.use(cors())
 
 app.get('/', async (req, res) => {
     const { city, categories } = req.query
@@ -27,5 +30,5 @@ app.get('/', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('Server is up on port 3000.')
+    console.log(`Server is up on port ${port}.`)
 })
